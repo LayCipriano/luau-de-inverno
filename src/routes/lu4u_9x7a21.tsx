@@ -3,7 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { getInscricoesCount } from "@/lib/inscricoes.functions";
 
-export const Route = createFileRoute("/inscritos")({
+export const Route = createFileRoute("/lu4u_9x7a21")({
   head: () => ({
     meta: [
       { title: "Inscritos — Luau de Outono" },

@@ -9,11 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as InscritosRouteImport } from './routes/lu4u_9x7a21'
+import { Route as Lu4u_9x7a21RouteImport } from './routes/lu4u_9x7a21'
 import { Route as IndexRouteImport } from './routes/index'
 
-const InscritosRoute = InscritosRouteImport.update({
-  id: 'lu4u_9x7a21',
+const Lu4u_9x7a21Route = Lu4u_9x7a21RouteImport.update({
+  id: '/lu4u_9x7a21',
   path: '/lu4u_9x7a21',
   getParentRoute: () => rootRouteImport,
 } as any)
@@ -25,16 +25,16 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/lu4u_9x7a21': typeof InscritosRoute
+  '/lu4u_9x7a21': typeof Lu4u_9x7a21Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/lu4u_9x7a21': typeof InscritosRoute
+  '/lu4u_9x7a21': typeof Lu4u_9x7a21Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/lu4u_9x7a21': typeof InscritosRoute
+  '/lu4u_9x7a21': typeof Lu4u_9x7a21Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -46,7 +46,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  InscritosRoute: typeof InscritosRoute
+  Lu4u_9x7a21Route: typeof Lu4u_9x7a21Route
 }
 
 declare module '@tanstack/react-router' {
@@ -55,7 +55,7 @@ declare module '@tanstack/react-router' {
       id: '/lu4u_9x7a21'
       path: '/lu4u_9x7a21'
       fullPath: '/lu4u_9x7a21'
-      preLoaderRoute: typeof InscritosRouteImport
+      preLoaderRoute: typeof Lu4u_9x7a21RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,7 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  InscritosRoute: InscritosRoute,
+  Lu4u_9x7a21Route: Lu4u_9x7a21Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

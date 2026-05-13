@@ -31,7 +31,7 @@ function Index() {
 
         <header className="relative z-10 px-6 py-6 flex items-center justify-between max-w-6xl mx-auto w-full">
           <span className="text-sm tracking-[0.3em] uppercase text-primary font-medium">
-            Maringá · 2025
+            Atmosfera Jovem · 2026
           </span>
           <a
             href="#inscricoes"
@@ -44,7 +44,7 @@ function Index() {
         <div className="relative z-10 flex-1 flex items-center px-6">
           <div className="max-w-6xl mx-auto w-full">
             <p className="text-sm md:text-base tracking-[0.4em] uppercase text-accent mb-6 animate-in fade-in slide-in-from-bottom-2 duration-700">
-              Atenção jovens de Maringá e região
+              Jovens de Maringá e Região
             </p>
             <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl leading-[0.95] tracking-tight mb-6">
               Luau de
@@ -57,7 +57,7 @@ function Index() {
               </span>
             </h1>
             <p className="text-2xl md:text-3xl text-muted-foreground max-w-2xl mb-10 font-light">
-              A estação da transformação.
+              A Estação da Transformação.
             </p>
             <div className="flex flex-wrap gap-4 items-center">
               <a
@@ -68,7 +68,7 @@ function Index() {
                 Garantir minha vaga →
               </a>
               <div className="text-sm text-muted-foreground">
-                <span className="block text-foreground font-medium">23 de maio · sábado</span>
+                <span className="block text-foreground font-medium">23 de Maio · Sábado</span>
                 <span>18h às 23h</span>
               </div>
             </div>
@@ -79,9 +79,9 @@ function Index() {
       {/* VERSE */}
       <section className="relative py-32 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-xs tracking-[0.4em] uppercase text-accent mb-8">A palavra</p>
+          <p className="text-xs tracking-[0.4em] uppercase text-accent mb-8">A Palavra</p>
           <blockquote className="font-serif text-3xl md:text-5xl leading-snug italic text-foreground">
-            "Sendo transformados de glória em glória."
+            "Sendo Transformados de Glória em Glória."
           </blockquote>
           <cite className="not-italic block mt-8 text-muted-foreground tracking-widest uppercase text-sm">
             2 Coríntios 3:18
@@ -97,10 +97,10 @@ function Index() {
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { label: "Diversão", desc: "Risadas em volta da fogueira." },
-              { label: "Adoração", desc: "Vozes erguidas sob o céu." },
-              { label: "Comunhão", desc: "Encontros que marcam." },
-              { label: "Palavra", desc: "Verdade que transforma." },
+              { label: "DIVERSÃO", desc: "Risadas, jogos e outras atividades." },
+              { label: "ADORAÇÃO", desc: "Vozes erguidas sob o céu." },
+              { label: "COMUNHÃO", desc: "Encontros que marcam." },
+              { label: "PALAVRA", desc: "Verdade que transforma." },
             ].map((p, i) => (
               <div
                 key={p.label}
@@ -156,7 +156,7 @@ function Index() {
       </section>
 
       <footer className="py-10 px-6 border-t border-border/50 text-center text-sm text-muted-foreground">
-        Luau de Outono · Maringá · 2025
+        Luau de Outono · ATM JOVEM · 2026
       </footer>
     </div>
   );
