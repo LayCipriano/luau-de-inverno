@@ -6,8 +6,12 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
 const schema = z.object({
-  nome: z.string().trim().min(1, "Informe seu nome").max(100),
-  sobrenome: z.string().trim().min(1, "Informe seu sobrenome").max(100),
+  nome_completo: z
+    .string()
+    .trim()
+    .min(3, "Informe seu nome completo")
+    .max(150, "Nome muito longo")
+    .refine((v) => v.split(/\s+/).length >= 2, "Informe nome e sobrenome"),
   data_nascimento: z
     .string()
     .min(1, "Informe sua data de nascimento")
@@ -38,9 +42,12 @@ export function InscricaoForm() {
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
   const onSubmit = async (values: FormValues) => {
+    const partes = values.nome_completo.trim().split(/\s+/);
+    const nome = partes[0];
+    const sobrenome = partes.slice(1).join(" ");
     const { error } = await supabase.from("inscricoes").insert({
-      nome: values.nome,
-      sobrenome: values.sobrenome,
+      nome,
+      sobrenome,
       data_nascimento: values.data_nascimento,
       ddd: values.ddd.replace(/\D/g, ""),
       telefone: values.telefone.replace(/\D/g, ""),
@@ -83,17 +90,15 @@ export function InscricaoForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="text-left grid gap-5">
-      <div className="grid sm:grid-cols-2 gap-5">
-        <div>
-          <label className={labelCls}>Nome</label>
-          <input className={inputCls} placeholder="Seu nome" maxLength={100} {...register("nome")} />
-          {errors.nome && <p className={errCls}>{errors.nome.message}</p>}
-        </div>
-        <div>
-          <label className={labelCls}>Sobrenome</label>
-          <input className={inputCls} placeholder="Seu sobrenome" maxLength={100} {...register("sobrenome")} />
-          {errors.sobrenome && <p className={errCls}>{errors.sobrenome.message}</p>}
-        </div>
+      <div>
+        <label className={labelCls}>Nome completo</label>
+        <input
+          className={inputCls}
+          placeholder="Nome e sobrenome"
+          maxLength={150}
+          {...register("nome_completo")}
+        />
+        {errors.nome_completo && <p className={errCls}>{errors.nome_completo.message}</p>}
       </div>
 
       <div>
