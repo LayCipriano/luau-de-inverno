@@ -23,8 +23,8 @@ function InscritosPage() {
   });
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-6 py-16">
-      <div className="text-center max-w-md">
+    <div className="min-h-screen bg-background text-foreground px-6 py-16">
+      <div className="max-w-2xl mx-auto text-center">
         <p className="text-xs tracking-[0.4em] uppercase text-accent mb-6">
           Luau de Outono
         </p>
@@ -45,7 +45,7 @@ function InscritosPage() {
           <p className="text-sm text-destructive mb-6">{data.error}</p>
         )}
 
-        <div className="flex items-center justify-center gap-4 text-sm">
+        <div className="flex items-center justify-center gap-4 text-sm mb-12">
           <button
             onClick={() => refetch()}
             disabled={isFetching}
@@ -58,6 +58,34 @@ function InscritosPage() {
             Voltar
           </Link>
         </div>
+
+        {data?.inscritos && data.inscritos.length > 0 && (
+          <div className="text-left">
+            <h2 className="text-xs tracking-[0.3em] uppercase text-accent mb-4 text-center">
+              Lista
+            </h2>
+            <ul className="rounded-2xl border border-border/60 bg-card/30 backdrop-blur divide-y divide-border/40 overflow-hidden">
+              {data.inscritos.map((p, i) => (
+                <li
+                  key={`${p.nome}-${p.created_at}-${i}`}
+                  className="flex items-center justify-between gap-4 px-5 py-3"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="text-xs tabular-nums text-muted-foreground w-6 shrink-0">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-medium truncate">
+                      {p.nome} {p.sobrenome}
+                    </span>
+                  </div>
+                  <span className="text-xs text-muted-foreground truncate max-w-[45%] text-right">
+                    {p.igreja}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
