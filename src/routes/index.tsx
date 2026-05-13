@@ -130,8 +130,8 @@ function Index() {
             </div>
             <div>
               <p className="text-xs tracking-[0.4em] uppercase text-accent mb-4">Onde</p>
-              <p className="font-serif text-4xl md:text-5xl mb-2">Maringá</p>
-              <p className="text-xl text-muted-foreground">Endereço enviado após inscrição</p>
+              <p className="font-serif text-4xl md:text-5xl mb-2">Av. Mauá, 1008</p>
+              <p className="text-xl text-muted-foreground">Estacionamento · Maringá</p>
             </div>
           </div>
 
@@ -152,6 +152,66 @@ function Index() {
               <InscricaoForm />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* DOAÇÕES */}
+      <section id="doacoes" className="py-32 px-6 border-t border-border/50">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-xs tracking-[0.4em] uppercase text-accent mb-4">
+              Contribua com a obra
+            </p>
+            <h2 className="font-serif text-4xl md:text-6xl mb-4">
+              Faça parte com sua{" "}
+              <span
+                className="italic bg-clip-text text-transparent"
+                style={{ backgroundImage: "var(--gradient-warm)" }}
+              >
+                doação
+              </span>
+            </h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              Cada oferta nos ajuda a preparar uma noite inesquecível para os jovens de
+              Maringá e região. Toda contribuição é semente.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="rounded-2xl border border-border/60 bg-card p-8">
+              <p className="text-xs tracking-[0.3em] uppercase text-accent mb-3">PIX</p>
+              <p className="font-serif text-2xl mb-2">Chave PIX</p>
+              <p className="text-muted-foreground text-sm mb-6">
+                Use a chave abaixo no seu app do banco para enviar sua oferta.
+              </p>
+              <div className="rounded-xl bg-background/60 border border-border/60 px-4 py-3 font-mono text-sm break-all">
+                informe a chave PIX
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-border/60 bg-card p-8">
+              <p className="text-xs tracking-[0.3em] uppercase text-accent mb-3">Por que doar?</p>
+              <ul className="space-y-3 text-muted-foreground">
+                <li className="flex gap-3">
+                  <span className="text-primary">·</span>
+                  Estrutura, som e iluminação da noite.
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-primary">·</span>
+                  Alimentação e fogueira em volta da comunhão.
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-primary">·</span>
+                  Materiais para discipulado e acompanhamento.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <p className="text-center text-xs text-muted-foreground mt-10">
+            "Cada um contribua segundo propôs no seu coração; não com tristeza, ou por
+            necessidade; porque Deus ama ao que dá com alegria." · 2 Coríntios 9:7
+          </p>
         </div>
       </section>
 
