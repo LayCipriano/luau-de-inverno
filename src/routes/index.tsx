@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroImg from "@/assets/luau-hero.jpg";
+import { InscricaoForm } from "@/components/InscricaoForm";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -145,12 +146,9 @@ function Index() {
             <p className="text-primary-foreground/80 mb-8 max-w-md mx-auto">
               Inscrições gratuitas e por tempo limitado. Garanta a sua agora.
             </p>
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-background text-foreground font-medium tracking-wide hover:bg-card transition-colors"
-            >
-              Fazer minha inscrição →
-            </a>
+            <div className="max-w-xl mx-auto">
+              <InscricaoForm />
+            </div>
           </div>
         </div>
       </section>
