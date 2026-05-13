@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroImg from "@/assets/luau-hero.jpg";
 import { InscricaoForm } from "@/components/InscricaoForm";
+import { FallingLeaves } from "@/components/FallingLeaves";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -26,6 +27,7 @@ function Index() {
           }}
         />
         <div className="absolute inset-0" style={{ background: "var(--gradient-glow)" }} />
+        <FallingLeaves count={20} />
 
         <header className="relative z-10 px-6 py-6 flex items-center justify-between max-w-6xl mx-auto w-full">
           <span className="text-sm tracking-[0.3em] uppercase text-primary font-medium">

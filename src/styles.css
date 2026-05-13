@@ -145,3 +145,17 @@
     color: var(--color-foreground);
   }
 }
+
+@keyframes leaf-fall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(var(--rot, 0deg));
+  }
+  100% {
+    transform: translate3d(var(--drift, 0px), 110vh, 0) rotate(calc(var(--rot, 0deg) + 720deg));
+  }
+}
+
+@keyframes leaf-spin {
+  0%, 100% { transform: rotate(-25deg) skewX(0deg); }
+  50% { transform: rotate(25deg) skewX(10deg); }
+}
