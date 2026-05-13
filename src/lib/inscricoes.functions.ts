@@ -3,13 +3,18 @@ import { supabaseAdmin } from "@/integrations/supabase/client.server";
 
 export const getInscricoesCount = createServerFn({ method: "GET" }).handler(
   async () => {
-    const { count, error } = await supabaseAdmin
+    const { data, count, error } = await supabaseAdmin
       .from("inscricoes")
-      .select("*", { count: "exact", head: true });
+      .select("nome, sobrenome, igreja, created_at", { count: "exact" })
+      .order("created_at", { ascending: false });
     if (error) {
       console.error("[inscricoes] count error", error);
-      return { count: 0, error: "Não foi possível carregar" };
+      return { count: 0, inscritos: [], error: "Não foi possível carregar" };
     }
-    return { count: count ?? 0, error: null };
+    return {
+      count: count ?? data?.length ?? 0,
+      inscritos: data ?? [],
+      error: null as string | null,
+    };
   },
 );
