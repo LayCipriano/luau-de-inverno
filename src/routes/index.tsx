@@ -130,8 +130,8 @@ function Index() {
             </div>
             <div>
               <p className="text-xs tracking-[0.4em] uppercase text-accent mb-4">Onde</p>
-              <p className="font-serif text-4xl md:text-5xl mb-2">Maringá</p>
-              <p className="text-xl text-muted-foreground">Endereço enviado após inscrição</p>
+              <p className="font-serif text-4xl md:text-5xl mb-2">Av. Mauá, 1008</p>
+              <p className="text-xl text-muted-foreground">Estacionamento · Maringá</p>
             </div>
           </div>
 
