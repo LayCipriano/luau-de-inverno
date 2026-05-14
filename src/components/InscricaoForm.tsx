@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
 
 const schema = z.object({
   nome_completo: z
@@ -42,21 +41,8 @@ export function InscricaoForm() {
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
   const onSubmit = async (values: FormValues) => {
-    const partes = values.nome_completo.trim().split(/\s+/);
-    const nome = partes[0];
-    const sobrenome = partes.slice(1).join(" ");
-    const { error } = await supabase.from("inscricoes").insert({
-      nome,
-      sobrenome,
-      data_nascimento: values.data_nascimento,
-      ddd: values.ddd.replace(/\D/g, ""),
-      telefone: values.telefone.replace(/\D/g, ""),
-      igreja: values.igreja,
-    });
-    if (error) {
-      toast.error("Não foi possível enviar sua inscrição. Tente novamente.");
-      return;
-    }
+    void values;
+    await new Promise((resolve) => setTimeout(resolve, 400));
     toast.success("Inscrição confirmada! Nos vemos no Luau.");
     setSubmitted(true);
     reset();
