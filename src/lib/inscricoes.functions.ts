@@ -1,9 +1,9 @@
 import { createServerFn } from "@tanstack/react-start";
-import { supabaseAdmin } from "@/integrations/supabase/client.server";
+import { supabase } from "@/integrations/supabase/client";
 
 export const getInscricoesCount = createServerFn({ method: "GET" }).handler(
   async () => {
-    const { data, count, error } = await supabaseAdmin
+    const { data, count, error } = await supabase
       .from("inscricoes")
       .select("nome, sobrenome, igreja, created_at", { count: "exact" })
       .order("created_at", { ascending: false });
