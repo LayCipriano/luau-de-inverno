@@ -27,7 +27,7 @@ const schema = z.object({
     .string()
     .trim()
     .regex(/^\d{8,15}$/, "Telefone deve ter entre 8 e 15 dígitos"),
-  igreja: z.string().trim().min(1, "Informe sua igreja").max(200),
+  igreja: z.string().trim().min(1, "Informe sua igreja ou 'nenhuma'").max(200),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -42,22 +42,36 @@ export function InscricaoForm() {
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
   const onSubmit = async (values: FormValues) => {
-    const partes = values.nome_completo.trim().split(/\s+/);
+    const partes = values.nome_completo
+    .trim()
+    .toLowerCase()
+    .split(/\s+/);
+
     const nome = partes[0];
     const sobrenome = partes.slice(1).join(" ");
-    const { error } = await supabase.from("inscricoes").insert({
+
+    const { error } = await supabase
+    .from("inscricoes")
+    .insert({
       nome,
       sobrenome,
       data_nascimento: values.data_nascimento,
       ddd: values.ddd.replace(/\D/g, ""),
       telefone: values.telefone.replace(/\D/g, ""),
-      igreja: values.igreja,
+      igreja: values.igreja.trim(),
     });
+
     if (error) {
+      if (error.code ==="23505") {
+        toast.error("Você já tem uma inscrição feita! 🤓");
+        return;
+      }
+
       toast.error("Não foi possível enviar sua inscrição. Tente novamente.");
       return;
     }
-    toast.success("Inscrição confirmada! Nos vemos no Luau.");
+
+    toast.success("Inscrição confirmada! Nos vemos no Luau. 🍂");
     setSubmitted(true);
     reset();
   };
@@ -121,7 +135,7 @@ export function InscricaoForm() {
       </div>
 
       <div>
-        <label className={labelCls}>De qual igreja você é?</label>
+        <label className={labelCls}>Se você pertence a alguma Igreja, informe aqui:</label>
         <input className={inputCls} placeholder="Nome da sua igreja" maxLength={200} {...register("igreja")} />
         {errors.igreja && <p className={errCls}>{errors.igreja.message}</p>}
       </div>
