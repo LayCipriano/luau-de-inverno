@@ -65,12 +65,12 @@ export function InscricaoForm() {
   if (submitted) {
     return (
       <div className="text-center py-12">
-        <p className="text-xs tracking-[0.4em] uppercase text-accent mb-4">Tudo certo</p>
+        <p className="text-xs tracking-[0.4em] uppercase text-primary-foreground mb-4">Tudo certo</p>
         <h3 className="font-serif text-4xl text-primary-foreground mb-3">
-          Sua vaga está garantida.
+          Sua vaga está garantida!
         </h3>
         <p className="text-primary-foreground/80 mb-8">
-          Em breve enviaremos o endereço e mais detalhes pelo seu telefone.
+          Venha com o coração aberto. Estamos ansiosos para te receber.
         </p>
         <button
           type="button"
@@ -121,7 +121,7 @@ export function InscricaoForm() {
       </div>
 
       <div>
-        <label className={labelCls}>Qual igreja você é?</label>
+        <label className={labelCls}>De qual igreja você é?</label>
         <input className={inputCls} placeholder="Nome da sua igreja" maxLength={200} {...register("igreja")} />
         {errors.igreja && <p className={errCls}>{errors.igreja.message}</p>}
       </div>

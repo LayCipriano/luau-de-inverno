@@ -93,7 +93,7 @@ function Index() {
       <section className="py-24 px-6 border-t border-border/50">
         <div className="max-w-6xl mx-auto">
           <h2 className="font-serif text-4xl md:text-5xl mb-16 max-w-2xl">
-            Uma noite que une o que importa.
+            Uma noite que une o que importa
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
@@ -125,7 +125,7 @@ function Index() {
           <div className="grid md:grid-cols-2 gap-12 mb-16">
             <div>
               <p className="text-xs tracking-[0.4em] uppercase text-accent mb-4">Quando</p>
-              <p className="font-serif text-4xl md:text-5xl mb-2">23 de maio</p>
+              <p className="font-serif text-4xl md:text-5xl mb-2">23 de Maio</p>
               <p className="text-xl text-muted-foreground">Sábado · 18h às 23h</p>
             </div>
             <div>
@@ -143,10 +143,10 @@ function Index() {
             }}
           >
             <h2 className="font-serif text-4xl md:text-6xl text-primary-foreground mb-4">
-              Sua vaga te espera.
+              Esperamos você lá!
             </h2>
             <p className="text-primary-foreground/80 mb-8 max-w-md mx-auto">
-              Inscrições gratuitas e por tempo limitado. Garanta a sua agora.
+              Inscrições gratuitas e por tempo limitado. Venha viver algo único conosco!
             </p>
             <div className="max-w-xl mx-auto">
               <InscricaoForm />
