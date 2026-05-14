@@ -43,7 +43,7 @@ export function InscricaoForm() {
   const onSubmit = async (values: FormValues) => {
     void values;
     await new Promise((resolve) => setTimeout(resolve, 400));
-    toast.success("Inscrição confirmada! Nos vemos no Luau.");
+    toast.success("Formulário enviado em modo demonstração.");
     setSubmitted(true);
     reset();
   };
@@ -53,10 +53,10 @@ export function InscricaoForm() {
       <div className="text-center py-12">
         <p className="text-xs tracking-[0.4em] uppercase text-primary-foreground mb-4">Tudo certo</p>
         <h3 className="font-serif text-4xl text-primary-foreground mb-3">
-          Sua vaga está garantida!
+          Formulário enviado!
         </h3>
         <p className="text-primary-foreground/80 mb-8">
-          Venha com o coração aberto. Estamos ansiosos para te receber.
+          Esta versão é apenas visual e não salva dados em banco.
         </p>
         <button
           type="button"
