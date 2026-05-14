@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
 
 const schema = z.object({
   nome_completo: z
@@ -42,22 +41,9 @@ export function InscricaoForm() {
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
   const onSubmit = async (values: FormValues) => {
-    const partes = values.nome_completo.trim().split(/\s+/);
-    const nome = partes[0];
-    const sobrenome = partes.slice(1).join(" ");
-    const { error } = await supabase.from("inscricoes").insert({
-      nome,
-      sobrenome,
-      data_nascimento: values.data_nascimento,
-      ddd: values.ddd.replace(/\D/g, ""),
-      telefone: values.telefone.replace(/\D/g, ""),
-      igreja: values.igreja,
-    });
-    if (error) {
-      toast.error("Não foi possível enviar sua inscrição. Tente novamente.");
-      return;
-    }
-    toast.success("Inscrição confirmada! Nos vemos no Luau.");
+    void values;
+    await new Promise((resolve) => setTimeout(resolve, 400));
+    toast.success("Formulário enviado em modo demonstração.");
     setSubmitted(true);
     reset();
   };
@@ -67,10 +53,10 @@ export function InscricaoForm() {
       <div className="text-center py-12">
         <p className="text-xs tracking-[0.4em] uppercase text-primary-foreground mb-4">Tudo certo</p>
         <h3 className="font-serif text-4xl text-primary-foreground mb-3">
-          Sua vaga está garantida!
+          Formulário enviado!
         </h3>
         <p className="text-primary-foreground/80 mb-8">
-          Venha com o coração aberto. Estamos ansiosos para te receber.
+          Esta versão é apenas visual e não salva dados em banco.
         </p>
         <button
           type="button"

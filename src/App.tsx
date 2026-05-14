@@ -139,7 +139,8 @@ export default function App() {
                 Esperamos você lá!
               </h2>
               <p className="text-primary-foreground/80 mb-8 max-w-md mx-auto">
-                Estrutura visual pronta para exportar. Esta versão não salva inscrições.
+                Inscrições gratuitas e por tempo limitado. Venha viver algo único conosco!
+
               </p>
               <div className="max-w-xl mx-auto">
                 <InscricaoForm />
