@@ -126,7 +126,7 @@ const errCls = "text-xs text-foreground mt-2 bg-background/80 border border-prim
 
       <div>
         <label className={labelCls}>Data de nascimento</label>
-        <input type="date" className={inputCls} {...register("data_nascimento")} />
+        <input type="date" className={`&{inputCls} w-full min-w-0 appearance-none`} {...register("data_nascimento")} />
         {errors.data_nascimento && <p className={errCls}>{errors.data_nascimento.message}</p>}
       </div>
 
