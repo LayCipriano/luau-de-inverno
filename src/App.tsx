@@ -85,7 +85,7 @@ export default function App() {
         <section className="py-24 px-6 border-t border-border/50">
           <div className="max-w-6xl mx-auto">
             <h2 className="font-serif text-4xl md:text-5xl mb-16 max-w-2xl">
-              Uma noite, uma experiência única
+              Uma noite, uma experiência única com Deus
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
