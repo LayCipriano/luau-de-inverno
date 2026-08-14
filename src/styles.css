@@ -213,5 +213,11 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+
+  input[type="date"] {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
 }
 
