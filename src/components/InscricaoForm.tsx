@@ -22,7 +22,7 @@ const schema = z.object({
   telefone: z
     .string()
     .trim()
-    .regex(/^\(\d{2}\) \d{4,5}-\d{4}$/, "Informe um telefone válido (somente números, DDD + número)"),
+    .regex(/^\d{2} \d{5}-\d{4}$/, "Informe um telefone válido (somente números, DDD + número)"),
   igreja: z.string().trim().min(1, "Informe sua igreja ou 'nenhuma'").max(200),
 });
 
