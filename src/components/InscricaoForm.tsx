@@ -19,14 +19,10 @@ const schema = z.object({
       const d = new Date(v);
       return !isNaN(d.getTime()) && d < new Date() && d > new Date("1900-01-01");
     }, "Data inválida"),
-  ddd: z
-    .string()
-    .trim()
-    .regex(/^\d{2,3}$/, "DDD deve ter 2 ou 3 dígitos"),
   telefone: z
     .string()
     .trim()
-    .regex(/^\d{8,15}$/, "Telefone deve ter entre 8 e 15 dígitos"),
+    .regex(/^\(\d{2}\) \d{4,5}-\d{4}$/, "Informe um telefone válido (somente números, DDD + número)"),
   igreja: z.string().trim().min(1, "Informe sua igreja ou 'nenhuma'").max(200),
 });
 
@@ -51,12 +47,11 @@ export function InscricaoForm() {
     const sobrenome = partes.slice(1).join(" ");
 
     const { error } = await supabase
-    .from("inscricoes")
+    .from("inscricoes_inverno")
     .insert({
       nome,
       sobrenome,
       data_nascimento: values.data_nascimento,
-      ddd: values.ddd.replace(/\D/g, ""),
       telefone: values.telefone.replace(/\D/g, ""),
       igreja: values.igreja.trim(),
     });
@@ -71,7 +66,7 @@ export function InscricaoForm() {
       return;
     }
 
-    toast.success("Inscrição confirmada! Nos vemos no Luau. 🍂");
+    toast.success("Inscrição confirmada! Nos vemos no Luau. 🪾");
     setSubmitted(true);
     reset();
   };
@@ -97,11 +92,25 @@ export function InscricaoForm() {
     );
   }
 
+  function maskPhone(value: string) {
+    const numbers = value.replace(/\D/g, "").slice(0,11);
+
+    if (numbers.length <= 2) {
+      return numbers;
+    } else if (numbers.length <= 7) {
+      return `${numbers.slice(0,2)} ${numbers.slice(2)}`;
+    } else if (numbers.length <= 11) {
+      return `${numbers.slice(0,2)} ${numbers.slice(2,7)}-${numbers.slice(7)}`;
+    }
+    return numbers;
+  }
+
+
   const inputCls =
     "w-full px-4 py-3 rounded-xl bg-background/30 backdrop-blur border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:outline-none focus:border-primary-foreground/60 transition";
   const labelCls = "text-xs tracking-[0.2em] uppercase text-primary-foreground/80 mb-2 block";
-  const errCls = "text-xs text-destructive-foreground/90 mt-1 bg-destructive/40 inline-block px-2 py-1 rounded";
-
+const errCls = "text-xs text-foreground mt-2 bg-background/80 border border-primary/40 inline-block px-3 py-1.5 rounded-lg backdrop-blur";
+  
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="text-left grid gap-5">
       <div>
@@ -121,18 +130,13 @@ export function InscricaoForm() {
         {errors.data_nascimento && <p className={errCls}>{errors.data_nascimento.message}</p>}
       </div>
 
-      <div className="grid grid-cols-[100px_1fr] gap-3">
         <div>
-          <label className={labelCls}>DDD</label>
-          <input className={inputCls} placeholder="44" inputMode="numeric" maxLength={3} {...register("ddd")} />
-          {errors.ddd && <p className={errCls}>{errors.ddd.message}</p>}
-        </div>
-        <div>
-          <label className={labelCls}>Telefone</label>
-          <input className={inputCls} placeholder="999999999" inputMode="numeric" maxLength={15} {...register("telefone")} />
+          <label className={labelCls}>DDD + Telefone</label>
+          <input className={inputCls} placeholder="44 9 9999-9999" inputMode="numeric" maxLength={15} {...register("telefone", { onChange: (e) => {
+            e.target.value = maskPhone(e.target.value);
+          }})} />
           {errors.telefone && <p className={errCls}>{errors.telefone.message}</p>}
         </div>
-      </div>
 
       <div>
         <label className={labelCls}>Se você pertence a alguma Igreja, informe aqui:</label>

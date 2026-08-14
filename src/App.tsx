@@ -1,6 +1,5 @@
-import heroImg from "@/assets/luau-hero.jpg";
+import heroImg from "@/assets/luau-hero.png";
 import { InscricaoForm } from "@/components/InscricaoForm";
-import { FallingLeaves } from "@/components/FallingLeaves";
 import { Toaster } from "@/components/ui/sonner";
 
 export default function App() {
@@ -10,7 +9,7 @@ export default function App() {
         <section className="relative min-h-screen flex flex-col">
           <img
             src={heroImg}
-            alt="Fogueira sob folhas de outono"
+            alt="Homem orando em uma caverna"
             width={1920}
             height={1280}
             className="absolute inset-0 w-full h-full object-cover opacity-60"
@@ -23,11 +22,10 @@ export default function App() {
             }}
           />
           <div className="absolute inset-0" style={{ background: "var(--gradient-glow)" }} />
-          <FallingLeaves count={20} />
 
           <header className="relative z-10 px-6 py-6 flex items-center justify-between max-w-6xl mx-auto w-full">
             <span className="text-sm tracking-[0.3em] uppercase text-primary font-medium">
-              Atmosfera Jovem · 2026
+              Atmosfera Jovem · Inverno de 2026
             </span>
             <a
               href="#inscricoes"
@@ -40,20 +38,20 @@ export default function App() {
           <div className="relative z-10 flex-1 flex items-center px-6">
             <div className="max-w-6xl mx-auto w-full">
               <p className="text-sm md:text-base tracking-[0.4em] uppercase text-accent mb-6 animate-in fade-in slide-in-from-bottom-2 duration-700">
-                Jovens de Maringá e Região
+                No secreto com Deus
               </p>
               <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl leading-[0.95] tracking-tight mb-6">
                 Luau de
                 <br />
                 <span
-                  className="italic bg-clip-text text-transparent"
+                  className="font-sans bg-clip-text text-transparent"
                   style={{ backgroundImage: "var(--gradient-warm)" }}
                 >
-                  Outono
+                  Inverno
                 </span>
               </h1>
               <p className="text-2xl md:text-3xl text-muted-foreground max-w-2xl mb-10 font-light">
-                A Estação da Transformação.
+                A Estação da Solitude
               </p>
               <div className="flex flex-wrap gap-4 items-center">
                 <a
@@ -64,7 +62,7 @@ export default function App() {
                   Garantir minha vaga →
                 </a>
                 <div className="text-sm text-muted-foreground">
-                  <span className="block text-foreground font-medium">23 de Maio · Sábado</span>
+                  <span className="block text-foreground font-medium">22 de Agosto · Sábado</span>
                   <span>18h às 23h</span>
                 </div>
               </div>
@@ -76,10 +74,10 @@ export default function App() {
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-xs tracking-[0.4em] uppercase text-accent mb-8">A Palavra</p>
             <blockquote className="font-serif text-3xl md:text-5xl leading-snug italic text-foreground">
-              "Sendo Transformados de Glória em Glória."
+              "Há lugares onde ninguém nos encontra, mas Deus nos encontra."
             </blockquote>
             <cite className="not-italic block mt-8 text-muted-foreground tracking-widest uppercase text-sm">
-              2 Coríntios 3:18
+              Mateus 6:6
             </cite>
           </div>
         </section>
@@ -87,14 +85,14 @@ export default function App() {
         <section className="py-24 px-6 border-t border-border/50">
           <div className="max-w-6xl mx-auto">
             <h2 className="font-serif text-4xl md:text-5xl mb-16 max-w-2xl">
-              Uma noite que une o que importa
+              Uma noite, uma experiência única
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { label: "DIVERSÃO", desc: "Risadas, jogos e outras atividades." },
-                { label: "ADORAÇÃO", desc: "Vozes erguidas sob o céu." },
-                { label: "COMUNHÃO", desc: "Encontros que marcam." },
-                { label: "PALAVRA", desc: "Verdade que transforma." },
+                { label: "ADORAÇÃO", desc: "Um coração rendido na presença de Deus" },
+                { label: "PALAVRA", desc: "Deus fala quando silenciamos o mundo" },
+                { label: "COMUNHÃO", desc: "Caminhando juntos na presença" },
+                { label: "DIVERSÃO", desc: "Momento para celebrar e conectar" },
               ].map((p, i) => (
                 <div
                   key={p.label}
@@ -118,13 +116,13 @@ export default function App() {
             <div className="grid md:grid-cols-2 gap-12 mb-16">
               <div>
                 <p className="text-xs tracking-[0.4em] uppercase text-accent mb-4">Quando</p>
-                <p className="font-serif text-4xl md:text-5xl mb-2">23 de Maio</p>
+                <p className="font-serif text-4xl md:text-5xl mb-2">22 de Agosto</p>
                 <p className="text-xl text-muted-foreground">Sábado · 18h às 23h</p>
               </div>
               <div>
                 <p className="text-xs tracking-[0.4em] uppercase text-accent mb-4">Onde</p>
                 <p className="font-serif text-4xl md:text-5xl mb-2">Av. Mauá, 1008</p>
-                <p className="text-xl text-muted-foreground">Estacionamento · Maringá</p>
+                <p className="text-xl text-muted-foreground">Estacionamento (Setebare) · Maringá</p>
               </div>
             </div>
 
@@ -150,7 +148,7 @@ export default function App() {
         </section>
 
         <footer className="py-10 px-6 border-t border-border/50 text-center text-sm text-muted-foreground">
-          Luau de Outono · ATM JOVEM · 2026
+          Luau de Inverno · ATM JOVEM · 2026
         </footer>
       </div>
 
