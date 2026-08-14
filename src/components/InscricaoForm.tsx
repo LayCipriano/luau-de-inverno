@@ -15,9 +15,17 @@ const schema = z.object({
   data_nascimento: z
     .string()
     .min(1, "Informe sua data de nascimento")
+    .regex(/^\d{2}\/\d{2}\/\d{4}$/, "Informe a data no formato DD/MM/AAAA")
     .refine((v) => {
-      const d = new Date(v);
-      return !isNaN(d.getTime()) && d < new Date() && d > new Date("1900-01-01");
+      const [day, month, year] = v.split("/").map(Number);
+      const data = new Date(year, month - 1, day);
+      return (
+        data.getFullYear() === year &&
+        data.getMonth() === month - 1 &&
+        data.getDate() === day &&
+        data < new Date() && // A data não pode ser futura
+        data > new Date(1900, 0, 1) // A data não pode ser muito antiga
+      )
     }, "Data inválida"),
   telefone: z
     .string()
@@ -39,25 +47,25 @@ export function InscricaoForm() {
 
   const onSubmit = async (values: FormValues) => {
     const partes = values.nome_completo
-    .trim()
-    .toLowerCase()
-    .split(/\s+/);
+      .trim()
+      .toLowerCase()
+      .split(/\s+/);
 
     const nome = partes[0];
     const sobrenome = partes.slice(1).join(" ");
 
     const { error } = await supabase
-    .from("inscricoes_inverno")
-    .insert({
-      nome,
-      sobrenome,
-      data_nascimento: values.data_nascimento,
-      telefone: values.telefone.replace(/\D/g, ""),
-      igreja: values.igreja.trim(),
-    });
+      .from("inscricoes_inverno")
+      .insert({
+        nome,
+        sobrenome,
+        data_nascimento: values.data_nascimento.split("/").reverse().join("-"),
+        telefone: values.telefone.replace(/\D/g, ""),
+        igreja: values.igreja.trim(),
+      });
 
     if (error) {
-      if (error.code ==="23505") {
+      if (error.code === "23505") {
         toast.error("Você já tem uma inscrição feita! 🤓");
         return;
       }
@@ -93,14 +101,14 @@ export function InscricaoForm() {
   }
 
   function maskPhone(value: string) {
-    const numbers = value.replace(/\D/g, "").slice(0,11);
+    const numbers = value.replace(/\D/g, "").slice(0, 11);
 
     if (numbers.length <= 2) {
       return numbers;
     } else if (numbers.length <= 7) {
-      return `${numbers.slice(0,2)} ${numbers.slice(2)}`;
+      return `${numbers.slice(0, 2)} ${numbers.slice(2)}`;
     } else if (numbers.length <= 11) {
-      return `${numbers.slice(0,2)} ${numbers.slice(2,7)}-${numbers.slice(7)}`;
+      return `${numbers.slice(0, 2)} ${numbers.slice(2, 7)}-${numbers.slice(7)}`;
     }
     return numbers;
   }
@@ -109,8 +117,8 @@ export function InscricaoForm() {
   const inputCls =
     "w-full px-4 py-3 rounded-xl bg-background/30 backdrop-blur border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:outline-none focus:border-primary-foreground/60 transition";
   const labelCls = "text-xs tracking-[0.2em] uppercase text-primary-foreground/80 mb-2 block";
-const errCls = "text-xs text-foreground mt-2 bg-background/80 border border-primary/40 inline-block px-3 py-1.5 rounded-lg backdrop-blur";
-  
+  const errCls = "text-xs text-foreground mt-2 bg-background/80 border border-primary/40 inline-block px-3 py-1.5 rounded-lg backdrop-blur";
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="text-left grid gap-5">
       <div>
@@ -126,17 +134,33 @@ const errCls = "text-xs text-foreground mt-2 bg-background/80 border border-prim
 
       <div>
         <label className={labelCls}>Data de nascimento</label>
-        <input type="date" className={inputCls} {...register("data_nascimento")} />
+        <input type="text" inputMode="numeric" placeholder="DD/MM/AAAA" maxLength={10} className={inputCls}
+          {...register("data_nascimento", {
+            onChange: (e) => {
+              const numbers = e.target.value.replace(/\D/g, "").slice(0, 8);
+
+              if (numbers.length <= 2) {
+                e.target.value = numbers;
+              } else if (numbers.length <= 4) {
+                e.target.value = `${numbers.slice(0, 2)}/${numbers.slice(2)}`;
+              } else {
+                e.target.value = `${numbers.slice(0, 2)}/${numbers.slice(2, 4)}/${numbers.slice(4)}`;
+              }
+            },
+          })}
+        />
         {errors.data_nascimento && <p className={errCls}>{errors.data_nascimento.message}</p>}
       </div>
 
-        <div>
-          <label className={labelCls}>DDD + Telefone</label>
-          <input className={inputCls} placeholder="44 9 9999-9999" inputMode="numeric" maxLength={15} {...register("telefone", { onChange: (e) => {
+      <div>
+        <label className={labelCls}>DDD + Telefone</label>
+        <input className={inputCls} placeholder="44 9 9999-9999" inputMode="numeric" maxLength={15} {...register("telefone", {
+          onChange: (e) => {
             e.target.value = maskPhone(e.target.value);
-          }})} />
-          {errors.telefone && <p className={errCls}>{errors.telefone.message}</p>}
-        </div>
+          }
+        })} />
+        {errors.telefone && <p className={errCls}>{errors.telefone.message}</p>}
+      </div>
 
       <div>
         <label className={labelCls}>Se você pertence a alguma Igreja, informe aqui:</label>
