@@ -63,7 +63,7 @@ export default function App() {
                 </a>
                 <div className="text-sm text-muted-foreground">
                   <span className="block text-foreground font-medium">22 de Agosto · Sábado</span>
-                  <span>18h às 23h</span>
+                  <span>19h às 23h</span>
                 </div>
               </div>
             </div>
@@ -117,7 +117,7 @@ export default function App() {
               <div>
                 <p className="text-xs tracking-[0.4em] uppercase text-accent mb-4">Quando</p>
                 <p className="font-serif text-4xl md:text-5xl mb-2">22 de Agosto</p>
-                <p className="text-xl text-muted-foreground">Sábado · 18h às 23h</p>
+                <p className="text-xl text-muted-foreground">Sábado · 19h às 23h</p>
               </div>
               <div>
                 <p className="text-xs tracking-[0.4em] uppercase text-accent mb-4">Onde</p>
